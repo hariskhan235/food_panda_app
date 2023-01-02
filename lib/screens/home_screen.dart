@@ -16,20 +16,20 @@ class _HomeScreenState extends State<HomeScreen> {
   Position? _currentPosition;
 
   Future<bool> _handleLocationPermission() async {
-    bool serviceEnabled;
+    //bool serviceEnabled;
     LocationPermission permission;
 
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-              'Location services are disabled. Please enable the services'),
-        ),
-      );
-      return false;
-    }
+    // serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    // if (!serviceEnabled) {
+    //   // ignore: use_build_context_synchronously
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     const SnackBar(
+    //       content: Text(
+    //           'Location services are disabled. Please enable the services'),
+    //     ),
+    //   );
+    //   return false;
+    // }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
@@ -45,9 +45,12 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     if (permission == LocationPermission.deniedForever) {
       // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
           content: Text(
-              'Location permissions are permanently denied, we cannot request permissions.')));
+              'Location permissions are permanently denied, we cannot request permissions.'),
+        ),
+      );
       return false;
     }
     return true;
@@ -57,7 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
     final hasPermission = await _handleLocationPermission();
 
     if (!hasPermission) return;
-    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+    await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.low,
+            forceAndroidLocationManager: true)
         .then((Position position) {
       setState(() => _currentPosition = position);
       _getAddressFromLatLng(_currentPosition!);
@@ -73,6 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
       Placemark place = placemarks[0];
       setState(() {
         _currentAddress = '${place.street}';
+        print(place.street);
       });
     }).catchError((e) {
       debugPrint(e);
@@ -83,6 +89,12 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _getCurrentPosition();
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+   // _currentAddress = '';
   }
 
   @override
@@ -384,7 +396,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 const SizedBox(
-                  height: 15,
+                  height: 5,
                 ),
                 Text(
                   'Your Restaurants',
@@ -568,22 +580,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Colors.black,
                               ),
                             ),
-                            Text(
-                              'Fast Food American',
-                              style: GoogleFonts.poppins(
-                                fontSize: 10,
-                                //fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Text(
-                              'PKR 60 delivery fee',
-                              style: GoogleFonts.poppins(
-                                fontSize: 8,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                            ),
+                            // Text(
+                            //   'Fast Food American',
+                            //   style: GoogleFonts.poppins(
+                            //     fontSize: 10,
+                            //     //fontWeight: FontWeight.bold,
+                            //     color: Colors.black,
+                            //   ),
+                            // ),
+                            // Text(
+                            //   'PKR 60 delivery fee',
+                            //   style: GoogleFonts.poppins(
+                            //     fontSize: 8,
+                            //     fontWeight: FontWeight.bold,
+                            //     color: Colors.black,
+                            //   ),
+                            // ),
                           ],
                         ),
                       )

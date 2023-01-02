@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_panda_app/screens/home_screen.dart';
 import 'package:food_panda_app/screens/splash_screen.dart';
 
 void main() {
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
           bodySmall: TextStyle(color: Colors.blueAccent, fontSize: 20),
         ),
       ),
-      home: const SplashScreen(),
+      home: const HomeScreen(),
     );
   }
 }

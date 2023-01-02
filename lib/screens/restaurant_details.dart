@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_panda_app/screens/home_screen.dart';
+import 'package:food_panda_app/screens/popular_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RestaurantsScreen extends StatefulWidget {
@@ -233,43 +234,55 @@ class _RestaurantsScreenState extends State<RestaurantsScreen>
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Text(
-                                          'Exclusive Subway Deal 1',
-                                          style: GoogleFonts.poppins(
-                                              //color: Colors.white,
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Text(
-                                          '6 inch sub & 250 ml drink',
-                                          style: GoogleFonts.poppins(
-                                            //color: Colors.white,
-                                            fontSize: 10,
-                                            //fontWeight: FontWeight.bold
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const PopularScreen(),
+                                      ),
+                                    );
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Exclusive Subway Deal 1',
+                                            style: GoogleFonts.poppins(
+                                                //color: Colors.white,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold),
                                           ),
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Row(
-                                          children: const [
-                                            Text('Rs. 333.00'),
-                                            SizedBox(
-                                              width: 5,
+                                          Text(
+                                            '6 inch sub & 250 ml drink',
+                                            style: GoogleFonts.poppins(
+                                              //color: Colors.white,
+                                              fontSize: 10,
+                                              //fontWeight: FontWeight.bold
                                             ),
-                                            Text('Rs. 333.00'),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                    Image.asset('assets/images/subway_deal.png')
-                                  ],
+                                          ),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Row(
+                                            children: const [
+                                              Text('Rs. 333.00'),
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Text('Rs. 333.00'),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                      Image.asset(
+                                          'assets/images/subway_deal.png')
+                                    ],
+                                  ),
                                 ),
                                 const SizedBox(
                                   height: 10,
@@ -282,6 +295,8 @@ class _RestaurantsScreenState extends State<RestaurantsScreen>
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           'Drink & Cookie',
