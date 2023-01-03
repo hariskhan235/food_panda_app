@@ -203,9 +203,9 @@ class _RestaurantsScreenState extends State<RestaurantsScreen>
                   child: TabBarView(
                     controller: _tabController,
                     children: [
-                      Center(
-                        child: Material(
-                          color: Colors.transparent,
+                      Material(
+                        color: Colors.transparent,
+                        child: SingleChildScrollView(
                           child: Padding(
                             padding: const EdgeInsets.only(
                                 top: 20, right: 20, left: 20),

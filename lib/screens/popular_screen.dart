@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_panda_app/screens/cart_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PopularScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class _PopularScreenState extends State<PopularScreen> {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(top: size.height * 0.06),
+              margin: EdgeInsets.only(top: size.height * 0.04),
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.28,
               decoration: const BoxDecoration(
@@ -372,7 +373,7 @@ class _PopularScreenState extends State<PopularScreen> {
                                   value = 3;
                                 });
                               }),
-                          const Text('Mountain drew'),
+                          const Text('Mountain dew'),
                         ],
                       ),
                       const Text('Rs.0.00')
@@ -444,7 +445,13 @@ class _PopularScreenState extends State<PopularScreen> {
                       ),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const AddToCartScreen(),
+                      ),
+                    );
+                  },
                   child: const Text('Add To Cart'),
                 ),
               ],
